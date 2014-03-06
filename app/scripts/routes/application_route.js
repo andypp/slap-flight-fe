@@ -1,8 +1,6 @@
-SlapFlightFe.TripsRoute = Ember.Route.extend({
+SlapFlightFe.ApplicationRoute = Ember.Route.extend({
   setupController: function(controller, model) {
-    // these lines can be removed
-    controller.set('departTrip', []);
-    controller.set('returnTrip', []);
-    controller.set('origModelAirports', this.store.find('airport'));
+    var curDate = new Date();
+    controller.set('currentYear', curDate.getFullYear());
   }
 });

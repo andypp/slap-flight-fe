@@ -7,13 +7,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">slap<span class="glyphicon glyphicon-remove"></span>[pw] - flight</a>
+      {{#link-to 'index' class="navbar-brand"}}slap<span class="glyphicon glyphicon-remove"></span>[pw] - flight{{/link-to}}
     </div>
   </div>
 </div>
 {{outlet}}
 <div class="container">
   <footer>
-  &copy; 
+  &copy; {{currentYear}}
   </footer>
 </div>
