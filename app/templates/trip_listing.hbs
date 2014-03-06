@@ -1,0 +1,22 @@
+<div class="flight-boxes">
+  <ul class="flight-boxes-list">
+    {{#each view.trip itemController="trip"}}
+    <li {{bind-attr class="isPromo:promo"}}>
+    <div class="flight-box-header">
+      {{airline}}
+      {{#if hasStops }}
+      ({{stops}} stop)
+      {{/if}}
+      <p>{{price}}</p>
+    </div>
+    <div class="flight-box-content">
+      <p>{{departDate}}</p>
+      <p>{{arriveDate}}</p>
+    </div>
+    <div class="flight-box-footer pull-right">
+      <button class="btn btn-primary" {{action "selectFlight" on "click"}}>Select</button>
+    </div>
+    </li>
+    {{/each}}
+  </ul>
+</div>
