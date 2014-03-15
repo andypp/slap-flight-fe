@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 sidebar">
+      <div class="sidebar-header">
+        <span class="glyphicon glyphicon-screenshot"></span>
+        Search Options
+      </div>
+      <div class="sidebar-content">
+        {{render "search_form" sForm}}
+      </div>
+    </div>
+    <div class="col-md-9">
+      <ul class="nav nav-tabs" id="tab-trip-listing">
+        <li class="active"><a href="#depart-trip" data-toggle="tab">Depart</a></li>
+        <li><a href="#return-trip" data-toggle="tab">Return</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="depart-trip">
+          {{view SlapFlightFe.TripListingView trip=departTrip}}
+        </div>
+        <div class="tab-pane" id="return-trip">
+          {{view SlapFlightFe.TripListingView trip=returnTrip}}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

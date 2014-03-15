@@ -1,0 +1,37 @@
+<form {{bind-attr class="hideLabel:form-inline loc"}} role="form" {{action "search" on="submit"}} >
+  <div class="form-group">
+    <label {{bind-attr class="hideLabel:sr-only"}} for="origin">Origin</label>
+    {{view Ember.Select
+        content=origAirports
+        optionValuePath="content.id"
+        optionLabelPath="content.desc"
+        value=origin
+        class="form-control"
+        prompt="Select Origin"}}
+  </div>
+  <div class="form-group">
+    <label {{bind-attr class="hideLabel:sr-only"}} for="destination">Destination</label>
+    {{view Ember.Select
+        content=destAirports
+        optionValuePath="content.id"
+        optionLabelPath="content.desc"
+        value=destination
+        class="form-control"
+        prompt="Select Destination"}}
+  </div>
+  <div class="form-group">
+    <label {{bind-attr class="hideLabel:sr-only"}} for="departDate">Depart</label>
+    {{input value=departDate class="form-control datepicker" type="text" id="input-departDate" placeholder="Depart"}}
+  </div>
+  <div {{bind-attr class=":form-group isReturn::hidden"}}>
+    <label {{bind-attr class="hideLabel:sr-only"}} for="returnDate">Return</label>
+    {{input value=returnDate class="form-control datepicker" type="text" id="input-arriveDate" placeholder="Return"}}
+  </div>
+  {{#if hideLabel}}
+  <button type="submit" class="btn btn-success" {{bind-attr disabled="isSearching"}}>Search <span class="glyphicon glyphicon-search"></span></button>
+  {{view SlapFlightFe.ReturnSelector}}
+  {{else}}
+  {{view SlapFlightFe.ReturnSelector}}
+  <button type="submit" class="btn btn-success" {{bind-attr disabled="isSearching"}}>Search <span class="glyphicon glyphicon-search"></span></button>
+  {{/if}}
+</form>

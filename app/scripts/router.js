@@ -1,4 +1,4 @@
 SlapFlightFe.Router.map(function () {
-  this.resource('trips', { path: '/search' });
-  // Add your routes here
+  this.resource('search', { path: '/search' });
+  this.resource('search', { path: '/search/:origin/:destination/:from/:to' });
 });
