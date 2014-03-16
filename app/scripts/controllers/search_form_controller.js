@@ -1,13 +1,22 @@
 SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
-  loc: '',
-  hideLabel: false,
+  loc: 'home-search',
+  hideLabel: true,
   origin: null,
   destination: null,
   departDate: null,
   returnDate: null,
   isSearching: false,
   isReturn: true,
-  needs: ['trips'],
+  origModelAirports: null,
+  destModelAirports: null,
+  originUrl: null,
+  destinationUrl: null,
+  origNotLoaded: true,
+  destNotLoaded: true,
+
+  init: function() {
+    this.set('origModelAirports', this.store.find('airport'));
+  },
 
   actions: {
     search: function() {
@@ -25,7 +34,6 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
         this.get('target').send('goToSearch', origin, destination, departDate, returnDate)
       }
       */
-      // TODO only send to if not already in search, if in search, use binding to update model
       this.get('target').send('goToSearch', origin, destination, departDate, returnDate)
     },
 
@@ -34,34 +42,15 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
     }
   },
 
-  checkSearching: function() {
-    this.set('isSearching', false);
-  },
-
-  init: function() {
-    if (this.get('model')) {
-      this.set('loc', this.get('model').loc);
-      this.set('hideLabel', this.get('model').hideLabel);
-      this.set('departDate', this.get('model').departDate);
-      this.set('returnDate', this.get('model').returnDate);
-    }
-    this.set('origModelAirports', this.store.find('airport'));
-  },
-
   origAirports: function() {
-    return this.get('origModelAirports').map(function(item) {
-      return {id: item.get('id'), desc: item.get('description')};
-    });
+    if (this.get('origModelAirports') != null) {
+      return this.get('origModelAirports').map(function(item) {
+        return {id: item.get('id'), desc: item.get('description')};
+      });
+    }
   }.property('origModelAirports.@each'),
 
-  // TODO use binding
-  origAirportsUpdated: function() {
-    if (this.get('model'))
-      this.set('origin', this.get('model').origin);
-  }.observes('origAirports.@each').on('init'),
-
   originUpdated: function() {
-    console.log('updated origin');
     if (this.get('origin') != null && this.get('origin') != '')
       this.set('destModelAirports', this.store.find('airport', {'orig': this.get('origin')}));
     else
@@ -69,7 +58,6 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
   }.observes('origin').on('init'),
 
   destAirports: function() {
-    console.log('dest model updated');
     if (this.get('destModelAirports') != null) {
       return this.get('destModelAirports').map(function(item) {
         return {id: item.get('id'), desc: item.get('description')};
@@ -79,10 +67,23 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
   }.property('destModelAirports.@each'),
 
   // TODO use binding
+  origAirportsLoaded: function() {
+    if (this.get('origNotLoaded')) {
+      if (this.get('origAirports') != null && this.get('origAirports').length > 0) {
+        this.set('origin', this.get('originUrl'));
+        this.set('origNotLoaded', false);
+      }
+    }
+  }.observes('origAirports.@each').on('init'),
+
+  // TODO use binding
   destAirportsUpdated: function() {
-    console.log('updated dest');
-    if (this.get('model'))
-      this.set('destination', this.get('model').destination);
+    if (this.get('destNotLoaded')) {
+      if (this.get('destAirports') != null && this.get('destAirports').length > 0) {
+        this.set('destination', this.get('destinationUrl'));
+        this.set('destNotLoaded', false);
+      }
+    }
   }.observes('destAirports.@each').on('init'),
 
   departDateUpdated: function() {

@@ -6,20 +6,20 @@
         Search Options
       </div>
       <div class="sidebar-content">
-        {{render "search_form" sForm}}
+        {{render "search_form"}}
       </div>
     </div>
     <div class="col-md-9">
-      <ul class="nav nav-tabs" id="tab-trip-listing">
-        <li class="active"><a href="#depart-trip" data-toggle="tab">Depart</a></li>
-        <li><a href="#return-trip" data-toggle="tab">Return</a></li>
+      <ul class="nav nav-tabs" id="tab-trips">
+        <li class="active"><a href="#depart-trips" data-toggle="tab">Depart</a></li>
+        <li><a href="#return-trips" data-toggle="tab">Return</a></li>
       </ul>
       <div class="tab-content">
-        <div class="tab-pane active" id="depart-trip">
-          {{view SlapFlightFe.TripListingView trip=departTrip}}
+        <div class="tab-pane active" id="depart-trips">
+          {{view SlapFlightFe.TripsView trips=departTrips}}
         </div>
-        <div class="tab-pane" id="return-trip">
-          {{view SlapFlightFe.TripListingView trip=returnTrip}}
+        <div class="tab-pane" id="return-trips">
+          {{view SlapFlightFe.TripsView trips=returnTrips}}
         </div>
       </div>
     </div>

@@ -1,13 +1,19 @@
 SlapFlightFe.SearchController = Ember.ArrayController.extend({
-  departTrip: function() {
-    return this.get('departModelTrip').map(function(item) {
-      return item;
-    });
-  }.property('departModelTrip.@each'),
+  needs: 'searchForm',
 
-  returnTrip: function() {
-    return this.get('returnModelTrip').map(function(item) {
-      return item;
-    });
-  }.property('returnModelTrip.@each'),
+  departTrips: function() {
+    if (this.get('departModelTrips') != null) {
+      return this.get('departModelTrips').map(function(item) {
+        return item;
+      });
+    }
+  }.property('departModelTrips.@each'),
+
+  returnTrips: function() {
+    if (this.get('returnModelTrips') != null) {
+      return this.get('returnModelTrips').map(function(item) {
+        return item;
+      });
+    }
+  }.property('returnModelTrips.@each'),
 });
