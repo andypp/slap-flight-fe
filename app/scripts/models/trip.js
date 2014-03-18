@@ -11,7 +11,7 @@ SlapFlightFe.Trip = DS.Model.extend({
   departDate: function() {
     var dt = "";
     this.get('flights').forEach(function(item) {
-      if (dt == "")
+      if (dt !== "")
         dt = item.get('departDate');
     });
     return dt;

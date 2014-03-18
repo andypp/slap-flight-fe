@@ -5,7 +5,7 @@ SlapFlightFe.SearchRoute = Ember.Route.extend({
       destination: this.parseParam('airport', params.destination),
       from: this.parseParam('date', params.from),
       to: this.parseParam('date', params.to),
-    }
+    };
   },
   setupController: function(controller, model) {
     try {
@@ -30,7 +30,7 @@ SlapFlightFe.SearchRoute = Ember.Route.extend({
   },
 
   parseParam: function(ty, val) {
-    if (val != null && val != '' && val != 'undefined' && val != 'null')
+    if (val != null && val !== '' && val !== 'undefined' && val != 'null')
         return val;
     return null;
   }

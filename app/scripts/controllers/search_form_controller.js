@@ -34,7 +34,7 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
         this.get('target').send('goToSearch', origin, destination, departDate, returnDate)
       }
       */
-      this.get('target').send('goToSearch', origin, destination, departDate, returnDate)
+      this.get('target').send('goToSearch', origin, destination, departDate, returnDate);
     },
 
     showReturn: function(doShow) {
@@ -51,7 +51,7 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
   }.property('origModelAirports.@each'),
 
   originUpdated: function() {
-    if (this.get('origin') != null && this.get('origin') != '')
+    if (this.get('origin') !== null && this.get('origin') !== '')
       this.set('destModelAirports', this.store.find('airport', {'orig': this.get('origin')}));
     else
       this.set('destModelAirports', this.store.find('airport', {'orig': 'xxx'}));
@@ -87,7 +87,7 @@ SlapFlightFe.SearchFormController = Ember.ObjectController.extend({
   }.observes('destAirports.@each').on('init'),
 
   departDateUpdated: function() {
-    if (this.get('departDate') != '')
+    if (this.get('departDate') !== '')
       $('#input-arriveDate').datepicker("setStartDate", this.get('departDate'));
   }.observes('departDate').on('init'),
 });
