@@ -12,6 +12,7 @@ module.exports = function(config) {
       'app/bower_components/bootstrap-datepicker/js/bootstrap-datepicker.js',
       'app/bower_components/ember/ember.js',
       'app/bower_components/ember-data/ember-data.js',
+      'app/bower_components/jquery-mockjax/jquery.mockjax.js',
 
       '.tmp/scripts/combined-scripts.js',
       '.tmp/scripts/compiled-templates.js',

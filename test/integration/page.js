@@ -1,4 +1,4 @@
-module('SlapFE unit tests: page loading', {
+module('SlapFlightFE integration tests: page loading', {
   setup: function () {
     SlapFlightFe.reset();
   }
