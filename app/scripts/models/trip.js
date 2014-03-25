@@ -9,19 +9,14 @@ SlapFlightFe.Trip = DS.Model.extend({
     return this.get('stops') > 0;
   }.property('stops'),
   departDate: function() {
-    var dt = "";
-    this.get('flights').forEach(function(item) {
-      if (dt !== "")
-        dt = item.get('departDate');
-    });
-    return dt;
+    if (this.get('flights') != null && this.get('flights').get('length') > 0)
+      return this.get('flights').get('firstObject').get('departDate');
+    return '';
   }.property('flights.@each.departDate'),
   arriveDate: function() {
-    var dt = "";
-    this.get('flights').forEach(function(item) {
-      dt = item.get('arriveDate');
-    });
-    return dt;
+    if (this.get('flights') != null && this.get('flights').get('length') > 0)
+      return this.get('flights').get('lastObject').get('arriveDate');
+    return '';
   }.property('flights.@each.arriveDate'),
   price: DS.attr('number', {defaultValue: 0.0}),
   isPromo: DS.attr('boolean', {defaultValue: false}),

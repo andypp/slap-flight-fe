@@ -4,8 +4,7 @@ module('SlapFlightFE integration tests: page loading', {
   }
 });
 
-test('homepage should render jumbotron', function() {
-  expect(1);
+test('homepage should render jumbotron', 1, function() {
   visit('/').then(function() {
     ok(exists('.jumbotron'), 'jumbotron not found');
   });
