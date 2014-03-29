@@ -6,6 +6,7 @@
         optionValuePath="content.id"
         optionLabelPath="content.desc"
         value=origin
+        id="input-origin"
         class="form-control"
         prompt="Select Origin"}}
   </div>
@@ -16,15 +17,16 @@
         optionValuePath="content.id"
         optionLabelPath="content.desc"
         value=destination
+        id="input-destination"
         class="form-control"
         prompt="Select Destination"}}
   </div>
-  <div class="form-group">
-    <label {{bind-attr class="hideLabel:sr-only"}} for="departDate">Depart</label>
+  <div id="formgroup-departDate" class="form-group">
+    <label {{bind-attr class="hideLabel:sr-only"}} for="input-departDate">Depart</label>
     {{input value=departDate class="form-control datepicker" type="text" id="input-departDate" placeholder="Depart"}}
   </div>
-  <div {{bind-attr class=":form-group isReturn::hidden"}}>
-    <label {{bind-attr class="hideLabel:sr-only"}} for="returnDate">Return</label>
+  <div id="formgroup-arriveDate" {{bind-attr class=":form-group isReturn::hidden"}}>
+    <label {{bind-attr class="hideLabel:sr-only"}} for="input-returnDate">Return</label>
     {{input value=returnDate class="form-control datepicker" type="text" id="input-arriveDate" placeholder="Return"}}
   </div>
   {{#if hideLabel}}
@@ -32,6 +34,6 @@
   {{view SlapFlightFe.ReturnSelector}}
   {{else}}
   {{view SlapFlightFe.ReturnSelector}}
-  <button type="submit" class="btn btn-success" {{bind-attr disabled="isSearching"}}>Search <span class="glyphicon glyphicon-search"></span></button>
+  <button id="search-button" type="submit" class="btn btn-success" {{bind-attr disabled="isSearching"}}>Search <span class="glyphicon glyphicon-search"></span></button>
   {{/if}}
 </form>

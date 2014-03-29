@@ -1,4 +1,5 @@
 var store;
+
 var sinAirport = {
   id: 'SIN',
   description: 'Singapore',

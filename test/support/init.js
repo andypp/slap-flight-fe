@@ -9,7 +9,6 @@ function exists(selector) {
   return !!find(selector).length;
 }
 
-
 function stubEndpointForHttpRequest(url, json) {
   $.mockjax({
     url: url,

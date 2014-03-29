@@ -8,7 +8,8 @@ SlapFlightFe.ReturnSelector = Ember.View.extend({
     // hide return
     else if (evt.target.id === 'label-one-way' && !$('#label-one-way').hasClass('active')) {
       // move to depart tab
-      $('#tab-trip-listing a:first').tab('show');
+      if ($('#tab-trip-listing a:first').length > 0)
+        $('#tab-trip-listing a:first').tab('show');
       this.get('controller').send('showReturn', false);
     }
   }
